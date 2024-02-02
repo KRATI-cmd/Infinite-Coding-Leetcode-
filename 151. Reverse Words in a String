@@ -1,0 +1,31 @@
+class Solution {
+public:
+    string reverseWords(string str) {
+        //stringstream used for removing unwanted spaces
+    stringstream s(str);
+        string word;
+        vector<string> tmp;
+        // ans string for output
+        string ans="";
+        //insert particular words from s to vector tmp
+        while(s >> word){
+            tmp.push_back(word);
+            
+        }
+        
+        for(int i=tmp.size()-1;i>=0;i--){
+            
+            if(i!=0){
+                ans+=tmp[i]+" ";
+            }
+            //for first word do not concatenate space
+            else{
+                ans+=tmp[i];
+            }
+        }
+        return ans;
+        
+        
+        
+    }
+};
