@@ -1,0 +1,50 @@
+Day 1 Heap & Its Identification
+
+Identification of heap:
+
+a) K
+b) smallest/largest
+
+Reverse Method
+
+K + smallest => max heap
+K + largest => min heap
+
+We always create heap of size K
+
+If ask for Kth smallest element then we create max heap & vice-versa. We get answer at top of heap.
+
+There are basically 3 operations used in heap i.e. push,pop & top
+
+If we use sorting it takes O(nlogn) but due to this K we can do this in O(nlogK) with heap.
+
+Lets take an example :
+arr[6] = 14,3,5,22,17,2 & K=3. We need to calculate Kth smallest element
+
+So we need to create max heap because it ask for Kth smallest elemnt(reverse method).
+
+Brute approach is sorting i.e. 2,3,5,14,17,22 & return Kth element = 5
+
+Optimal Approach is heap beacause we do not want 14,17,22 to be sorted which takes extra work
+
+Now we create heap of size K which is 3 in question => arr[6] = 14,3,5,22,17,2 
+In traversal, size of heap = 0 < (K=3) so, 14 is inserted
+              size of heap = 1 < 3, so 3 14  because 14 is highest so it's at top of heap
+              size of heap becomes 2 < 3 so 3 5 14 
+              size of heap becomes 4  so elemets are 3,5,14,22 but size > K so top(22) is popped 
+              Now elements are 3,5,14
+              size of heap becomes 4  so elemets are 3,5,14,17 but size > K so top(17) is popped 
+              Now elements are 3,5,14
+              size of heap becomes 4  so elemets are 2,3,5,14 but size > K so top is popped 
+              Now elements are 2,3,5
+
+So all elements are traversed & 5 is at top of  stack =>return 5;
+
+to create max heap=> priority_queue<int> maxh;
+to create min heap=> priority_queue<int,vector<int>,greater<int>> minh;
+
+To create pairs within priority_queue,
+typedef pair<int,pair<int,int>> ppi;
+
+So u can use ppi wherever to use pair after typedef
+             
