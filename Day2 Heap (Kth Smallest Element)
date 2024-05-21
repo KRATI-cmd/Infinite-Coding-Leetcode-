@@ -1,0 +1,48 @@
+Problem: To find Kth smallest element
+
+arr[]={7,10,4,3,20,15}, K=3  => O/P = 7
+
+Brute Approach=> That is sorting so we get 3,4,7,10,15,20 so we need to return Kth element from beginning i.e. arr[K-1] 7.
+=O(nlog n) complexity
+
+Identification => Either
+                a) K 
+                b) Smallest/ Largest
+
+So we can solve from O(nlog n) to O(nlog K) using heap
+Because of reverse method that is if ask for smallest go for max heap & vice-versa.So for Kth smallest we go for max heap
+
+Q)arr[]={7,10,4,3,20,15}, K=3 
+Now we start traversal of array ,
+                                Push element into heap i.e. so we push 7 in the heap & now size becomes 1 then check size < K .
+                                We push 10 now the order is 7,10 i.e. 10 is at top of heap because of max heap & size becomes 2 i.e. 2 < 3.
+                                We push 4 now the order is 4,7,10 i.e. 10 is at top of heap because of max heap & size becomes 3 i.e. 3 < 3
+                                We push 3 now the order is 3,4,7,10 i.e. 10 is at top of heap because of max heap & size becomes 4 i.e. 4 < 3,
+                                so condition is false now remove top until size < K so we remove 10 now size becomes 3 & elements are 3,4,7.  
+                                We push 20 now the order is 3,4,7,20 i.e. 20 is at top of heap because of max heap & size becomes 4 i.e. 4 < 3,
+                                so condition is false now remove top until size < K so we remove 30 now size becomes 3 & elements are 3,4,7.  
+                                We push 15 now the order is 3,4,7,15 i.e. 15 is at top of heap because of max heap & size becomes 4 i.e. 4 < 3,
+                                so condition is false now remove top until size < K so we remove 15 now size becomes 3 & elements are 3,4,7. 
+So we return the top of heap i.e. 7 which is our answer.
+
+
+Brute Approach Code :
+sort(arr,arr+n);
+return arr[k-1];
+
+
+Optimal Code (In C++) Using Heap
+priority_queue<int> maxh;
+for(int i=0;i<arr.size();i++){
+      maxh.push(arr[i]);
+      if(maxh.size() > k){
+            maxh.pop();
+      }
+}
+return maxh.top();
+
+
+                                
+                                
+ 
+
