@@ -1,0 +1,49 @@
+Q) Return Kth largest element in array
+
+arr[]={7,10,4,3,20,15}, n=6, K=3
+
+O/P = 10
+
+Initially think about the problem for 15 minutes then come here 
+
+Brute Approach: Sorting (In C++)  = O(nlog n)
+sort(arr,arr+n);
+return arr[K-1];
+
+Optimal Approach = > Check for identification of heap
+We can solve it in O(nlog K)
+
+a) Kth
+b) Largest/ smallest
+
+Both are fulfilled so we go for min heap (reverse method). Chk in Day 1 Heap for reverse method
+
+Approach:
+Create a heap of size K
+
+Insert first ele. = 7 in heap => 7 => chk size of heap < K => 1 < 3
+Insert next ele. = 10 in heap =>10, 7 because of min heap => 2 < 3 
+Insert next ele. = 4 in heap => 10,7,4 because of min heap 4 is at top of heap => 3  < 3
+Insert next ele. = 3 in heap =>10,7,4,3 because of min heap 3 is at top of heap => 4  < 3 so condition is false => remove top until size < k
+                  => 10,7,4 now size < k
+
+Insert next ele. = 20 in heap =>20,10,7,4 because of min heap 4 is at top of heap => 4  < 3 so condition is false => remove top until size < k
+                  => 20,10,7 now size < k
+
+Insert next ele. = 15 in heap =>20,15,10,7 because of min heap 4 is at top of heap => 4  < 3 so condition is false => remove top until size < k
+                  => 20,15,10 now size < k
+After traversal return the top of heap = 10 = answer
+
+Code(In C++):Let say we have given array arr of size n.
+
+priority_queue<int,vector<int>,greater<int>> minh;
+for(int i=0;i<n;i++){
+  minh.push(arr[i]);
+  if(minh.size()>k){
+    minh.pop();
+}
+}
+return minh.top();
+
+Thanks !! Keep going!! :)
+
