@@ -1,0 +1,53 @@
+Sort elements by frequency
+arr[]={1,1,1,3,2,2,4}
+O/P = {1,1,1,2,2,3,4}
+Because the frequency of 1 is 3 which is max. then frequencyof 2 is 2, then 3=>1, 4=>1
+
+Identification: a)K
+                b) Smallest/ Largest
+
+We can go for heap because in this sorting helps so we can go for heap.
+
+1.Take arr & then we used unordered_map to get val:freq 
+2.then make a max heap as the high freq remains at top
+3. pop one by one until each freq 
+
+We can understood it by example 
+
+1. We use unordered_map 
+   1 -> 3
+   2 -> 2
+   3 -> 1
+   4 -> 1
+
+2. We use heap to store pair as {cnt,val}
+  {3,1},{2,2},{1,3},{1,4}
+
+3.after pop we get {1,1,1,2,2,3,4}
+
+#define ppi pair<int,int>
+
+unordered_map<int,int> mp;
+for(int i=0;i<arr.size();i++){
+  mp[arr[i]]++;
+}
+
+priority_queue<ppi, vector<ppi>> maxh;
+for(auto i:mp){
+  maxh.push({i.second,i.first});
+}
+
+while(maxh.size()>0){
+  int freq=maxh.top().first;
+  int val= maxh.top().second;
+  
+  while(freq--){
+  ans.push_back(val);
+  }
+maxh.pop();
+
+
+
+Thanks!! Happy learning
+
+
