@@ -1,0 +1,68 @@
+Problem Link:https://www.geeksforgeeks.org/problems/top-k-frequent-elements-in-array/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article
+Given an array of N numbers and a positive integer K. The problem is to find K numbers with the most occurrences, i.e., the top K numbers having the maximum frequency.
+Input: arr[] = {3, 1, 4, 4, 5, 2, 6, 1}, K = 2, N=8
+Output: 4 1
+
+Explanation:
+Frequency of 4 = 2, Frequency of 1 = 2
+These two have the maximum frequency and 4 is larger than 1.
+
+
+Brute Force: Use map for cnt of each value
+             sort vector in decreasing order of freq
+              print first k elements
+
+
+
+Identification: a)K
+                b) Smallest / Largest
+
+So K is present we can go for heap.
+
+Optimal Approach: Heap
+
+We use min heap of size k . in last we return 
+Approach:
+1. Create an unordered map mp, to store key-value pair, i.e. element-frequency pair.
+2. Traverse the array from start to end.
+3. For every element in the array update mp[array[i]]++
+4. Store the element-frequency pair in a Priority Queue
+5. Run a loop k times, and in each iteration remove the root of the priority queue and print the element.
+
+Code:
+# define ppi pair<int,int>
+struct compare{
+  bool operator()(pair<int,int> p1, pair<int,int> p2){
+
+  if(p1.second == p2.second) return p1.first < p2.first;
+  return p1.second < p2.second;
+}
+  
+};
+
+void top_k_elements(int arr[],int n,int k){
+unordered_map<int,int> mp;
+for(int i=0;i<n;i++){
+  mp[arr[i]]++;
+}
+priority_queue<ppi,vector<ppi>,greater<ppi>>,compare> minh;
+for(auto i=mp.begin();i!=mp.end();i++){
+  minh.push({i->second, i->first});
+  if(minh.size()> k){
+    minh.pop();
+}
+}
+
+while(minh.size()>0){
+  ans.push_back(minh.top().second);
+  minh.pop();
+}
+return ans;
+
+  
+
+
+
+
+
+
