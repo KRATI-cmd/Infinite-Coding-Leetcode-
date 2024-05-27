@@ -1,0 +1,42 @@
+K Closest Points To Origin
+
+Given a list of points on the 2-D plane and an integer K. The task is to find K closest points to the origin and print them.
+Input : point = [[3, 3], [5, -1], [-2, 4]], K = 2
+Output : [[3, 3], [-2, 4]]
+Square of Distance of origin from this point is 
+(3, 3) = 18
+(5, -1) = 26
+(-2, 4) = 20
+So the closest two points are [3, 3], [-2, 4].
+
+Identification : a)K
+                 b) Largest/ smallest
+
+So K is present then we go for max heap(reverse method)
+
+Algo:
+1)Make a pair to store euclidean distance & pair of points
+2) Create a max heap & insert it
+3) After traversal, return the points = answer
+
+
+Code:
+typedef pair<int,pair<int,int>> ppi;
+for(int i=0;i<n;i++){
+  maxh.push({points[0] * points[0] + points[1] * points[1],{points[0],points[1]}});
+  if(maxh.size()>K){
+    maxh.pop();
+}
+}
+while(maxh.size()>0){
+  pair<int,int> p=maxh.top().second;
+  cout << p.first << " " << p.second << endl;
+  maxh.pop();
+}
+
+
+Thanks:)
+  
+  
+
+
