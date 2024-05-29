@@ -1,0 +1,56 @@
+Problem:Given an array A[] of N positive integers and two positive integers K1 and K2. Find the sum of all elements between K1th and K2th smallest elements of the array.
+It may be assumed that (1 <= k1 < k2 <= n).
+
+Examples : 
+
+Input : arr[] = {20, 8, 22, 4, 12, 10, 14},  k1 = 3,  k2 = 6  
+Output : 26          
+         3rd smallest element is 10. 6th smallest element 
+         is 20. Sum of all element between k1 & k2 is
+         12 + 14 = 26
+
+
+Approach: a) Sorting
+Algo: 1. First we sort the array
+      2. Then sum of elements between K1 & K2
+
+Optimal Approach: Heap
+
+Identification: a) k
+                B) Smallest/ largest
+
+
+Algo: Create a maxh heap & get top at its K1 & K2 ele
+      Traverse array & sum of ele b/w K1 & K2
+
+Code:
+
+            long long sum=0, ele1=0, ele2=0;
+
+        priority_queue<long long> maxh1;
+        priority_queue<long long > maxh2;
+        for(int i=0;i<N;i++){
+            maxh1.push(A[i]);
+            if(maxh1.size()>K1){
+                maxh1.pop();
+            }
+            ele1 =maxh1.top();
+        }
+        
+        for(int i=0;i<N;i++){
+            maxh2.push(A[i]);
+            if(maxh2.size()>K2){
+                maxh2.pop();
+            }
+            ele2=maxh2.top();
+        }
+        
+        for(int i=0;i<N;i++){
+            if(A[i]>ele1 && A[i]<ele2){
+                sum+=A[i];
+            }
+        }
+        return sum;
+
+
+
