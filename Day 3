@@ -1,0 +1,42 @@
+Ques: Previous greater element
+
+Given an array of distinct elements, find previous greater element for every element. If previous greater element does not exist, print -1.
+Input : arr[] = {10, 4, 2, 20, 40, 12, 30}
+Output :         -1, 10, 4, -1, -1, 40, 40
+
+Brute Approach: Using nested loops:
+
+int prev;
+for(int i=1;i<n;i++){
+prev=-1;
+for(int j=i-1;j>=0;j++){
+  if(a[j]>a[i]){
+    prev=a[j];
+    cout << prev << " ";
+    break; 
+}}
+
+if(prev ==-1){
+cout<< prev << " ";
+}}
+
+
+
+Optimal Approach: Using Stack
+
+Identification: a) array
+                b) nested loop (dependent on i )
+
+
+stack<int> s;
+cout << "-1" << " ";
+s.push(a[0]);
+for(int i=1;i<n;i++){
+while(!s.empty() && s.top() < a[i]){
+s.pop();}
+
+s.empty()? cout << "-1 " : cout <<s.top();
+s.push(a[i]);
+}
+
+Thanks :)
